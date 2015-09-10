@@ -41,7 +41,7 @@ var HierarchicalLoadingAnimation = function () {
 		/* 
 			Return array with elements, based on a class passed by parameter or a default class box
 		*/
-		element = document.querySelectorAll(properties.selector);
+		elements = document.querySelectorAll(properties.selector);
 	};
 
 	Animation.getElementSelector = function () {
@@ -66,6 +66,10 @@ var HierarchicalLoadingAnimation = function () {
 		return properties.interval;
 	};
 
+	Animation.getArrayElements = function () {
+		return elements;
+	}
+
 	Animation.runAnimation = function () {
 		
 		/*
@@ -73,7 +77,7 @@ var HierarchicalLoadingAnimation = function () {
 			it's possible to pass a callback function to the prototype function, which will execute considering
 			the callback function and the properties of the animation, coming from the private variable "properties"
 		*/
-		element.eachElement(function(e){
+		elements.eachElement(function(e){
 			if (typeof e === 'object') 
 				e.classList.add("show");
 		}, properties);
@@ -104,10 +108,10 @@ Object.prototype.eachElement = function (callback, properties) {
 	
 	(function animate (counter) {
 		setTimeout(function () {
-			callback(element[counter]);
+			callback(elements[counter]);
 			counter++;
 
-			if (counter < element.length) {
+			if (counter < elements.length) {
 				animate(counter);
 			}
 				

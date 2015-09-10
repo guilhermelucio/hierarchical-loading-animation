@@ -12,25 +12,61 @@ describe('Hierarchical Loading Animation', function(){
 	});
 
 	it('Testing the function that returns the box elements', function() {
+		
+		// Setup an interval at animations
 		Animation.setInterval(800);
 
-		createBoxesElement();
-		addBoxElements(10);
-		expect(Animation.locateElements().length).toBe(10);
+		prepareTests({
+			box: {
+				quantity: 10
+			}
+		});
+		
+		// Setup the elements variable at the Class HierarchicalLoadingAnimation to get the .box divs
+		Animation.locateElements();
+		
+		// As we defined a number at the function addBoxElement, we expect that the value of elements available at the screen, to be the same we've defined
+		expect(Animation.getArrayElements().length).toBe(10);
+		
+		// Removing the .box elements of the screen, because it's recommended to undo the changes made at the dom
 		removeBoxElements();
+
 	});
 
-	function locateBoxesElement () {
+	it("Checking if the box elements are receiving the class .show correctly", function (){
+
+		prepareTests({
+			box: {
+				quantity: 10
+			}
+		});
+
+		Animation.locateElements();
+
+		Animation.runAnimation();
+
+		expect(document.querySelectorAll('.show').length).toBe(10);
+
+		removeBoxElements();
+
+	});
+
+	function prepareTests (data) {
+		createWrapperElement();
+		addItem(data.box.quantity);
+	}
+
+	function findWrapper () {
 		return document.querySelector('.boxes');
 	}
 
-	function createBoxesElement () {
+	function createWrapperElement () {
 		var boxes = document.createElement("div");
 		boxes.classList.add("boxes");
 		document.body.appendChild(boxes);
 	}
 
-	function createBoxElements (parent) {
+	function createItem (parent) {
 		var box = document.createElement("div");
 		box.classList.add("show");
 		box.classList.add("box");
@@ -38,15 +74,15 @@ describe('Hierarchical Loading Animation', function(){
 	}
 
 	function removeBoxElements () {
-		var container = locateBoxesElement();
-		container.innerHTML('');
+		var wrapper = document.querySelector('body');
+		wrapper.innerHTML = '';
 	}
 
-	function addBoxElements (limit) {
-		var container = locateBoxesElement();
+	function addItem (limit) {
+		var wrapper = findWrapper();
 
 		for (var i=0; i < 10; i++) {
-			createBoxElements(container);
+			createItem(wrapper);
 		}
 	}
 });
