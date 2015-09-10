@@ -1,4 +1,4 @@
-var hierarchicalLoadingAnimation = function () {
+var HierarchicalLoadingAnimation = function () {
 
 	var Animation = this;
 
@@ -8,7 +8,7 @@ var hierarchicalLoadingAnimation = function () {
 	var properties = {
 		selector: '.box',
 		interval: 500
-	}
+	};
 
 	/*
 		Array of elements that contain the class specified at the variable "properties"
@@ -57,14 +57,14 @@ var hierarchicalLoadingAnimation = function () {
 			This variable will be the interval between the animations
 		*/
 		properties.interval = interval;
-	}
+	};
 
 	Animation.getInterval = function () {
 		/*
 			Using a method getter to get the value of a private variable inverval
 		*/
 		return properties.interval;
-	}
+	};
 
 	Animation.runAnimation = function () {
 		
@@ -87,7 +87,7 @@ var hierarchicalLoadingAnimation = function () {
 				e.classList.remove("show");
 		},properties);
 
-	}
+	};
 	
 	// Calling the main function 
 	Animation.animate();
@@ -95,7 +95,7 @@ var hierarchicalLoadingAnimation = function () {
 };
 
 window.onload = function (e) {
-	var animate = new hierarchicalLoadingAnimation();
+	var animate = new HierarchicalLoadingAnimation();
 };
 
 Object.prototype.eachElement = function (callback, properties) {
@@ -113,4 +113,4 @@ Object.prototype.eachElement = function (callback, properties) {
 				
 		},properties.interval);
 	})(0);
-}
+};
