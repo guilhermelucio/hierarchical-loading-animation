@@ -1,0 +1,36 @@
+.boxes {
+	display:flex;
+
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:center;
+	align-items:flex-start;
+	align-content:space-between;
+}
+
+.box {
+	background:tomato;
+	height:200px;
+	margin:10px;
+	min-width:200px;
+	padding:10px;
+
+	opacity:0;
+
+	transform: scale(0);
+	-moz-transform: scale(0);
+	-webkit-transform: scale(0);
+
+	transition: all 2s easy-out;
+	-moz-transition: all 2s easy-out;
+	-webkit-transition: all 2s easy-out;
+
+}
+
+.box.show {
+	opacity:1;
+
+	transform: scale(1);
+	-moz-transform: scale(1);
+	-webkit-transform: scale(1);
+}
