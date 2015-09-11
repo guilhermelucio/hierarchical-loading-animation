@@ -68,7 +68,7 @@ var HierarchicalLoadingAnimation = function () {
 
 	Animation.getArrayElements = function () {
 		return elements;
-	}
+	};
 
 	Animation.runAnimation = function () {
 		

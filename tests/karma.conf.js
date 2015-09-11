@@ -16,7 +16,13 @@ module.exports = function (config) {
 		files: [
 			'scripts/**/*.js',
 			'tests/**/*.spec.js'
-		]
+		],
+
+		browsers: [
+			'PhantomJS'
+		],
+
+		singleRun: true,
 	
 	});
 };
